@@ -58,7 +58,9 @@ public class Applicant {
 	public int getApplicantId() {
 		return applicantId;
 	}
-	
+	public void setApplicantId(int applicantId) {
+		this.applicantId=applicantId;
+	}
 	public String getFullName() {
 		return fullName;
 	}
@@ -111,7 +113,6 @@ public class Applicant {
 				+ ", dateOfBirth=" + dateOfBirth + ", mobile=" + mobile + ", nationality="
 				+ nationality + ", address=" + address + ", vehicleType=" + vehicleType + ", user=" + user + "]";
 	}
-	
 	
 	
 }

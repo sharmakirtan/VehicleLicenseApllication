@@ -1,7 +1,6 @@
 package com.capgemini.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,9 +9,7 @@ import com.capgemini.exception.DuplicateRequestException;
 import com.capgemini.exception.InvalidLoginCredentialsException;
 import com.capgemini.exception.NoRecordsFoundException;
 import com.capgemini.exception.NullInputException;
-import com.capgemini.exception.RTOOfficerNotFoundException;
 import com.capgemini.exception.UserNotFoundException;
-import com.capgemini.model.RTOOfficer;
 import com.capgemini.model.User;
 import com.capgemini.repository.IUserJpaRepository;
 @Service

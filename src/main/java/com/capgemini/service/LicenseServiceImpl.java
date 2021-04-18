@@ -11,8 +11,9 @@ import org.springframework.stereotype.Service;
 import com.capgemini.exception.AgeNotValidException;
 import com.capgemini.exception.DuplicateRequestException;
 import com.capgemini.exception.NullInputException;
-import com.capgemini.model.*;
-import com.capgemini.repository.IApplicantJpaRepository;
+import com.capgemini.model.Application;
+import com.capgemini.model.Appointment;
+import com.capgemini.model.Documents;
 import com.capgemini.repository.IApplicationJpaRepository;
 import com.capgemini.repository.IAppointmentJpaRepository;
 import com.capgemini.repository.IUserJpaRepository;
@@ -21,8 +22,6 @@ import com.capgemini.repository.IUserJpaRepository;
 public class LicenseServiceImpl implements ILicenseService {
 	@Autowired
 	private IAppointmentJpaRepository apptrepos;
-	@Autowired
-	private IApplicantJpaRepository applicantrepos;
 	@Autowired
 	private IApplicationJpaRepository apprepos;
 	@Autowired
@@ -74,16 +73,16 @@ public class LicenseServiceImpl implements ILicenseService {
 	}
 
 	@Override
-	public String uploadDocuments(int appno,Documents documents) throws NullInputException {
-		if(documents!=null && appno!=0)
+	public String uploadDocuments(int applicantionNo,Documents documents) throws NullInputException {
+		if(documents!=null && applicantionNo!=0)
 		{
-			Optional<Application> optapp=apprepos.findById(appno);
+			Optional<Application> optapp=apprepos.findById(applicantionNo);
 			Application app=optapp.get();
-			documents.setDocId(appno);
+			documents.setDocId(applicantionNo);
 			app.setDocuments(documents);
-			app.setApplicationNumber(appno);
+			app.setApplicationNumber(applicantionNo);
 			apprepos.save(app);
-			return "Documents uploaded Sucessfully";
+			return "Documents uploaded Successfully";
 		}
 		else
 		throw new NullInputException("No Documents uploaded");
@@ -105,10 +104,10 @@ public class LicenseServiceImpl implements ILicenseService {
 	public String bookSlotLLTest(int applicationno, Appointment appointment) {
 		{
 			Optional<Application> optapp=apprepos.findById(applicationno);
-			Application app=optapp.get();
+			Application llapplication=optapp.get();
 			appointment.setAppointmentNumber(applicationno);
-			app.setAppointment(appointment);
-			apprepos.save(app);
+			llapplication.setAppointment(appointment);
+			apprepos.save(llapplication);
 			return "Update successful";
 		}
 	}
